@@ -1,0 +1,79 @@
+.profile-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+  }
+  
+  .profile-header {
+    background: #2c3e50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .profile-avatar {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 15px;
+  }
+  
+  .profile-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  h2 {
+    margin: 5px 0 0;
+    font-size: 18px;
+    opacity: 0.8;
+  }
+  
+  .profile-content {
+    padding: 20px;
+  }
+  
+  .bio {
+    margin: 0 0 20px;
+    color: #666;
+    line-height: 1.5;
+  }
+  
+  .skills-section,
+  .contact-section {
+    margin-bottom: 20px;
+  }
+  
+  h3 {
+    margin: 0 0 10px;
+    color: #2c3e50;
+  }
+  
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .skill-tag {
+    background: #e9ecef;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 14px;
+    color: #495057;
+  }
+  
+  .contact-section p {
+    margin: 5px 0;
+    color: #666;
+  }
