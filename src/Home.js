@@ -1,14 +1,14 @@
 import React from 'react';
 import './Home.css';
+import Footer from './Footer'; // Import the Footer component
 
 function Home() {
   const profile = {
     name: "Elaisha Mae M. Arias",
-    title: "aspiring UI/UX Designer, Front-end Developer",
+    title: "UI/UD Designer &Frontend Developer",
     bio: "Passionate about creating beautiful and functional web experiences",
-    skills: ["React", "JavaScript", "CSS", "HTML", "Node.js", "C", "C++", "C#"],
-    email: "elaishaarias@gmail.com",
-    phone: "+63 956 7655 825"
+    skills: ["React", "JavaScript", "CSS", "HTML", "Node.js", "C", "C++","C#"],
+    
   };
 
   return (
@@ -37,13 +37,8 @@ function Home() {
             ))}
           </div>
         </div>
-
-        <div className="contact-section fade-in">
-          <h3>Contact</h3>
-          <p>Email: {profile.email}</p>
-          <p>Phone: {profile.phone}</p>
-        </div>
       </div>
+      <Footer />
     </div>
   );
 }

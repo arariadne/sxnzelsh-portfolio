@@ -1,8 +1,11 @@
 import React from 'react';
 import './App.css';
 import Home from './Home';
+import Footer from './Footer'; //Import the footer
 
 function App() {
+
+
   return (
     <div className="App">
       <nav className="navbar">
@@ -12,6 +15,7 @@ function App() {
         </div>
       </nav>
       <Home />
+      <Footer  />
     </div>
   );
 }
