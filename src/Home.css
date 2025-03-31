@@ -1,79 +1,118 @@
 .profile-card {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    overflow: hidden;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Increased shadow */
+  width: 100%;
+  max-width: 450px; /* slightly wider */
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Added transitions */
+  margin: 20px auto; /* Center the card */
+}
+
+.profile-card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25); /* Increased shadow on hover */
+}
+
+.profile-header {
+  background: linear-gradient(135deg, #3498db, #2c3e50); /* Gradient background */
+  color: white;
+  padding: 30px; /* Increased padding */
+  text-align: center;
+}
+
+.profile-avatar {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 20px; /* Increased margin */
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid white; /* Thicker border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Added shadow to avatar */
+  transition: transform 0.3s ease-in-out; /* Added transition */
+}
+
+.profile-avatar img:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+}
+
+h1 {
+  margin: 10px 0 0; /* Added margin */
+  font-size: 28px; /* Increased font size */
+  font-weight: 600; /* Slightly bolder */
+}
+
+h2 {
+  margin: 5px 0 0;
+  font-size: 20px;
+  opacity: 0.9; /* Increased opacity */
+  font-style: italic; /* Added italic style */
+}
+
+.profile-content {
+  padding: 30px; /* Increased padding */
+}
+
+.bio {
+  margin: 0 0 25px; /* Increased margin */
+  color: #555; /* Slightly darker color */
+  line-height: 1.6; /* Increased line height */
+}
+
+.skills-section,
+.contact-section {
+  margin-bottom: 25px; /* Increased margin */
+}
+
+h3 {
+  margin: 0 0 15px; /* Increased margin */
+  color: #34495e; /* Darker color */
+  font-weight: 600;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Increased gap */
+}
+
+.skill-tag {
+  background: #ecf0f1; /* Light gray background */
+  padding: 8px 15px; /* Increased padding */
+  border-radius: 20px; /* More rounded */
+  font-size: 15px;
+  color: #34495e;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Added transitions */
+}
+
+.skill-tag:hover {
+  background-color: #d5dbdb; /* Slightly darker on hover */
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.contact-section p {
+  margin: 8px 0; /* Increased margin */
+  color: #555;
+  font-size: 16px;
+}
+
+/* Fade-in animation */
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  .profile-header {
-    background: #2c3e50;
-    color: white;
-    padding: 20px;
-    text-align: center;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .profile-avatar {
-    width: 150px;
-    height: 150px;
-    margin: 0 auto 15px;
-  }
-  
-  .profile-avatar img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid white;
-  }
-  
-  h1 {
-    margin: 0;
-    font-size: 24px;
-  }
-  
-  h2 {
-    margin: 5px 0 0;
-    font-size: 18px;
-    opacity: 0.8;
-  }
-  
-  .profile-content {
-    padding: 20px;
-  }
-  
-  .bio {
-    margin: 0 0 20px;
-    color: #666;
-    line-height: 1.5;
-  }
-  
-  .skills-section,
-  .contact-section {
-    margin-bottom: 20px;
-  }
-  
-  h3 {
-    margin: 0 0 10px;
-    color: #2c3e50;
-  }
-  
-  .skills-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  
-  .skill-tag {
-    background: #e9ecef;
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 14px;
-    color: #495057;
-  }
-  
-  .contact-section p {
-    margin: 5px 0;
-    color: #666;
-  }
+}
