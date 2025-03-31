@@ -1,28 +1,28 @@
 .profile-footer {
-    background: #f0f0f0;
-    padding: 20px;
-    text-align: center;
-    border-top: 1px solid #ddd;
-  }
-  
-  .footer-contact {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  
-  .footer-contact p {
-    margin: 5px 0;
-    color: #555;
-    font-size: 16px;
-  }
-  
-  footer a {
-    color: #3498db;
-    text-decoration: none;
-  }
-  
-  footer a:hover {
-    text-decoration: underline;
-  }
+  background: #f0f0f0;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+}
+
+.footer-contact {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-contact p {
+  margin: 5px 0;
+  color: #555;
+  font-size: 16px;
+}
+
+footer a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
