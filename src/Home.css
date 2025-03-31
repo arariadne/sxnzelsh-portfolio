@@ -1,104 +1,99 @@
-.profile-card {
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Increased shadow */
-  width: 100%;
-  max-width: 450px; /* slightly wider */
-  overflow: hidden;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Added transitions */
-  margin: 20px auto; /* Center the card */
-}
-
-.profile-card:hover {
-  transform: translateY(-5px); /* Lift effect on hover */
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25); /* Increased shadow on hover */
-}
-
-.profile-header {
-  background: linear-gradient(135deg, #3498db, #2c3e50); /* Gradient background */
-  color: white;
-  padding: 30px; /* Increased padding */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8bbd0, #e1bee7); /* Light pink and purple gradient */
+  padding: 20px;
+  box-sizing: border-box;
   text-align: center;
 }
 
-.profile-avatar {
-  width: 150px;
-  height: 150px;
-  margin: 0 auto 20px; /* Increased margin */
+.home-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.profile-avatar img {
+.home-header {
+  margin-bottom: 30px;
+}
+
+.home-avatar {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 20px;
+}
+
+.home-avatar img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  border: 5px solid white; /* Thicker border */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Added shadow to avatar */
-  transition: transform 0.3s ease-in-out; /* Added transition */
+  border: 5px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
 }
 
-.profile-avatar img:hover {
-  transform: scale(1.1); /* Slight zoom on hover */
+.home-avatar img:hover {
+  transform: scale(1.1);
 }
 
-h1 {
-  margin: 10px 0 0; /* Added margin */
-  font-size: 28px; /* Increased font size */
-  font-weight: 600; /* Slightly bolder */
+.home-bio {
+  margin-bottom: 30px;
+  max-width: 600px;
 }
 
-h2 {
-  margin: 5px 0 0;
-  font-size: 20px;
-  opacity: 0.9; /* Increased opacity */
-  font-style: italic; /* Added italic style */
-}
-
-.profile-content {
-  padding: 30px; /* Increased padding */
-}
-
-.bio {
-  margin: 0 0 25px; /* Increased margin */
-  color: #555; /* Slightly darker color */
-  line-height: 1.6; /* Increased line height */
-}
-
-.skills-section,
-.contact-section {
-  margin-bottom: 25px; /* Increased margin */
-}
-
-h3 {
-  margin: 0 0 15px; /* Increased margin */
-  color: #34495e; /* Darker color */
-  font-weight: 600;
+.home-skills {
+  margin-bottom: 30px;
 }
 
 .skills-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px; /* Increased gap */
+  justify-content: center;
+  gap: 10px;
 }
 
 .skill-tag {
-  background: #ecf0f1; /* Light gray background */
-  padding: 8px 15px; /* Increased padding */
-  border-radius: 20px; /* More rounded */
+  background: #f3e5f5; /* Lighter purple */
+  padding: 8px 15px;
+  border-radius: 20px;
   font-size: 15px;
-  color: #34495e;
-  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Added transitions */
+  color: #6a1b9a; /* Darker purple */
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  margin: 5px;
 }
 
 .skill-tag:hover {
-  background-color: #d5dbdb; /* Slightly darker on hover */
-  transform: scale(1.05); /* Slight zoom on hover */
+  background-color: #e1bee7; /* Light purple */
+  transform: scale(1.05);
 }
 
-.contact-section p {
-  margin: 8px 0; /* Increased margin */
-  color: #555;
-  font-size: 16px;
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: #880e4f; /* Darker pink */
+}
+
+h2 {
+  font-size: 1.5em;
+  color: #9c27b0; /* Purple */
+}
+
+p.bio {
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #7952b3; /* Lighter Purple */
+}
+
+h3 {
+  font-size: 1.8em;
+  color: #880e4f; /* Darker pink */
+  margin-bottom: 20px;
 }
 
 /* Fade-in animation */
