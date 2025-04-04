@@ -1,11 +1,32 @@
+/* Define CSS Variables (Custom Properties) for better maintainability */
+:root {
+  --gradient-start: #f8bbd0;
+  --gradient-end: #e1bee7;  
+  --avatar-border: white;
+  --text-primary: #880e4f;  
+  --text-secondary: #9c27b0; 
+  --text-bio: #7952b3;     
+  --skill-bg: #f3e5f5;       
+  --skill-text: #6a1b9a;     
+  --skill-hover-bg: #e1bee7; 
+  --shadow-color: rgba(0, 0, 0, 0.2);
+
+  --font-size-h1: 2.5rem;
+  --font-size-h2: 1.5rem;
+  --font-size-h3: 1.8rem;
+  --font-size-bio: 1.1rem;
+  --font-size-skill: 0.95rem; 
+}
+
 .home-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8bbd0, #e1bee7); /* Light pink and purple gradient */
-  padding: 20px;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  padding: 2rem; 
   box-sizing: border-box;
   text-align: center;
+  overflow-x: hidden; 
 }
 
 .home-content {
@@ -15,17 +36,19 @@
   justify-content: center;
   align-items: center;
   max-width: 800px;
+  width: 100%; 
   margin: 0 auto;
+  padding: 1rem 0;
 }
 
 .home-header {
-  margin-bottom: 30px;
+  margin-bottom: 2rem;
 }
 
 .home-avatar {
   width: 150px;
   height: 150px;
-  margin: 0 auto 20px;
+  margin: 0 auto 1.5rem; 
 }
 
 .home-avatar img {
@@ -33,81 +56,122 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  border: 5px solid white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Use CSS variables */
+  border: 5px solid var(--avatar-border);
+  box-shadow: 0 4px 12px var(--shadow-color); 
   transition: transform 0.3s ease-in-out;
 }
 
 .home-avatar img:hover {
-  transform: scale(1.1);
+  transform: scale(1.08); 
 }
 
 .home-bio {
-  margin-bottom: 30px;
+  margin-bottom: 2rem; 
   max-width: 600px;
 }
 
 .home-skills {
-  margin-bottom: 30px;
+  margin-bottom: 2rem; 
+  width: 100%; 
+  max-width: 700px; 
 }
 
 .skills-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 10px 15px; 
 }
 
 .skill-tag {
-  background: #f3e5f5; /* Lighter purple */
-  padding: 8px 15px;
+  /* Use CSS variables */
+  background: var(--skill-bg);
+  color: var(--skill-text);
+  padding: 0.5rem 1rem;
   border-radius: 20px;
-  font-size: 15px;
-  color: #6a1b9a; /* Darker purple */
-  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  font-size: var(--font-size-skill);
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   margin: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  cursor: default; 
 }
 
 .skill-tag:hover {
-  background-color: #e1bee7; /* Light purple */
-  transform: scale(1.05);
+  background-color: var(--skill-hover-bg);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-  font-size: 2.5em;
-  margin-bottom: 10px;
-  color: #880e4f; /* Darker pink */
+  font-size: var(--font-size-h1);
+  margin-bottom: 0.5rem;
+  color: var(--text-primary); 
 }
 
 h2 {
-  font-size: 1.5em;
-  color: #9c27b0; /* Purple */
+  font-size: var(--font-size-h2);
+  color: var(--text-secondary); 
+  margin-bottom: 1rem; 
+  font-weight: 400; 
 }
 
 p.bio {
-  font-size: 1.1em;
-  line-height: 1.6;
-  color: #7952b3; /* Lighter Purple */
+  font-size: var(--font-size-bio);
+  line-height: 1.7; 
+  color: var(--text-bio); 
 }
 
 h3 {
-  font-size: 1.8em;
-  color: #880e4f; /* Darker pink */
-  margin-bottom: 20px;
+  font-size: var(--font-size-h3);
+  color: var(--text-primary);
+  margin-bottom: 1.5rem; 
 }
 
-/* Fade-in animation */
 .fade-in {
-  animation: fadeIn 1s ease-in-out;
+  animation: fadeIn 0.8s ease-in-out backwards;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(25px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Basic Responsive Adjustments */
+@media (max-width: 600px) {
+  :root {
+    --font-size-h1: 2rem;
+    --font-size-h2: 1.3rem;
+    --font-size-h3: 1.5rem;
+    --font-size-bio: 1rem;
+    --font-size-skill: 0.9rem;
+  }
+
+  .home-container {
+    padding: 1rem;
+  }
+
+  .home-avatar {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1rem;
+  }
+
+  .home-content {
+    padding: 0.5rem 0;
+  }
+
+  .skills-list {
+    gap: 8px 12px;
+  }
+
+  .skill-tag {
+     padding: 0.4rem 0.8rem;
   }
 }
