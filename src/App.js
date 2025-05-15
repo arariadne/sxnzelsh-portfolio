@@ -1,26 +1,23 @@
 import React from 'react';
 import './App.css';
 import Home from './Home';
-import Footer from './Footer';
 
 function App() {
-  const scrollToFooter = () => {
-    const footer = document.querySelector('.profile-footer');
-    if (footer) {
-      footer.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <div className="App">
       <nav className="navbar">
         <div className="navbar-container">
-          <a href="/" className="navbar-link">Home</a>
-          <a href="#" className="navbar-link" onClick={scrollToFooter}>Contact</a>
+          <a href="#home" className="navbar-link">About Me</a>
+          <a href="#main-techstacks" className="navbar-link">My Projects</a>
+          <a href="#other-techstacks" className="navbar-link">Contact Me</a>
         </div>
       </nav>
       <Home />
-      <Footer />
+      <footer className="profile-footer">
+        <div className="container">
+          <p>&copy; {new Date().getFullYear()} Elaisha Mae Arias. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   );
 }
