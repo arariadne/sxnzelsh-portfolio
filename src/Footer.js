@@ -9,8 +9,17 @@ function Footer() {
           <div className="contact-col">
             <div className="contact-info">
               <h3>Contact Me</h3>
-              <p><i className="fas fa-envelope"></i> elaisha.arias@email.com</p>
-              <p><i className="fas fa-phone"></i> +63 912 345 6789</p>
+              <p><i className="fas fa-envelope"></i> elaishaarias@gmail.com</p>
+              <p><i className="fas fa-phone"></i> +63 956 765 5825</p>
+              <p>
+                <a 
+                  href="https://drive.google.com/drive/folders/1rSuPmUTNPmR0i4Lbi7NYiwiFgm0csjtI?usp=sharing" 
+                  download 
+                  className="resume-download-link"
+                >
+                  <i className="fas fa-file-pdf"></i> Download Resume
+                </a>
+              </p>
             </div>
           </div>
           
