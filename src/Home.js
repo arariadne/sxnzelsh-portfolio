@@ -1,21 +1,15 @@
 import React from 'react';
 import './Home.css';
+import InteractiveBackground from './InteractiveBackground';
 
 function Home() {
   return (
     <>
-      {/* Navbar 
-      <nav className="navbar">
-        <div className="navbar-container">
-          <a href="#about" className="navbar-link active">About Me</a>
-          <a href="#projects" className="navbar-link">My Projects</a>
-          <a href="#contact" className="navbar-link">Contact Me</a>
-        </div>
-      </nav>*/}
-      
       {/* Main Home Section */}
       <section id="home" className="home-container">
-        <div className="home-content">
+      <div className="home-background"></div>
+      <InteractiveBackground />
+      <div className="home-content">
           {/* Profile Image */}
           <div className="profile-section">
             <div className="profile-image-container">
@@ -151,6 +145,91 @@ function Home() {
                 <div className="tech-icon graphql">
                   <img src="https://icon.icepanel.io/Technology/svg/GraphQL.svg" className="tech-logo" />
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" className="projects-section">
+        <div className="container">
+          <h2 className="section-title">MY PROJECTS</h2>
+          <div className="projects-grid">
+            {/* Project Card 1 - Gourmet Gamble */}
+            <div className="project-card">
+              <div className="project-image">
+                <img src="https://i.pinimg.com/736x/67/d3/0e/67d30e658e9039a2aec79c3f490c7b26.jpg" alt="Gourmet Gamble" className="project-img-icon" />
+              </div>
+              <h3 className="project-title">Gourmet Gamble</h3>
+              <p className="project-description">
+                A smart web platform built with React.js and Firebase that helps users turn
+                everyday ingredients into practical, delicious meals. By entering what they have, 
+                users get tailored recipe suggestions that reduce food waste and promote sustainable cooking.
+              </p>
+              <div className="project-tech">
+                <span className="tech-tag">React</span>
+                <span className="tech-tag">Firebase</span>
+              </div>
+              <div className="project-links">
+                <a href="https://github.com/LoydAMT/gourmetgamble0" target="_blank" rel="noopener noreferrer" className="project-link">
+                  <i className="fas fa-code"></i> View Code
+                </a>
+                <a href="https://gourmetgamble0.vercel.app" target="_blank" rel="noopener noreferrer" className="project-link">
+                  <i className="fas fa-external-link-alt"></i> Live Demo
+                </a>
+              </div>
+            </div>
+
+            {/* Project Card 2 - Swiftsail */}
+            <div className="project-card">
+              <div className="project-image">
+                <img src="https://i.pinimg.com/736x/4b/f2/eb/4bf2ebce5bc269ef241d7280dbacf315.jpg" alt="Swiftsail" className="project-img-icon" />
+              </div>
+              <h3 className="project-title">Swiftsail</h3>
+              <p className="project-description">
+                A web-based ferry booking platform where operators list routes, schedules, and prices. 
+                Users can easily browse, compare, and book ferry trips in just a few clicks. 
+                The system streamlines booking, offers real-time availability, and ensures a smooth, 
+                hassle-free travel experience.
+              </p>
+              <div className="project-tech">
+                <span className="tech-tag">React</span>
+                <span className="tech-tag">Node.js</span>
+                <span className="tech-tag">Firebase</span>
+              </div>
+              <div className="project-links">
+                <a href="https://github.com/LoydAMT/ferrybookingsystem-scamacs" target="_blank" rel="noopener noreferrer" className="project-link">
+                  <i className="fas fa-code"></i> View Code
+                </a>
+                <a href="https://swiftsail-ferries.vercel.app" target="_blank" rel="noopener noreferrer" className="project-link">
+                  <i className="fas fa-external-link-alt"></i> Live Demo
+                </a>
+              </div>
+            </div>
+
+            {/* Project Card 3 - Furwell */}
+            <div className="project-card">
+              <div className="project-image">
+                <img src="https://i.pinimg.com/736x/6d/70/56/6d7056f62e27b04fd1258a8298ff4edb.jpg" alt="Furwell" className="project-img-icon" />
+              </div>
+              <h3 className="project-title">Furwell</h3>
+              <p className="project-description">
+                A user-friendly platform connecting pet owners with nearby veterinary clinics. 
+                Users can quickly find clinics and book appointments online,
+                while clinics can subscribe to increase their visibility and attract more clients.
+              </p>
+              <div className="project-tech">
+                <span className="tech-tag">React</span>
+                <span className="tech-tag">NodeJS</span>
+                <span className="tech-tag">Firebase</span>
+              </div>
+              <div className="project-links">
+                <a href="https://github.com/laurenx122/marea-furwell" target="_blank" rel="noopener noreferrer" className="project-link">
+                  <i className="fas fa-code"></i> View Code
+                </a>
+                <a href="https://furwell.vercel.app/Home" target="_blank" rel="noopener noreferrer" className="project-link">
+                  <i className="fas fa-external-link-alt"></i> Live Demo
+                </a>
               </div>
             </div>
           </div>
