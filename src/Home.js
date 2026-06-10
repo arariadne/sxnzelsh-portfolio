@@ -175,7 +175,7 @@ function Home() {
           <div className="content-section">
             <p className="greeting">Hi! I'm</p>
             <h1 className="name">ELAISHA MAE M. ARIAS</h1>
-            <h2 className="title">an aspiring UI/UX Designer and Fullstack Developer</h2>
+            <h2 className="title">UI/UX Designer and Fullstack Developer</h2>
             
             <p className="bio">
               A full-stack developer and UI/UX designer specializing in engineering AI-powered platforms and seamless digital products. I bridge the gap between design and development by integrating advanced LLM APIs into robust system architectures while maintaining a strict focus on intuitive user experiences. I deliver clean code, scalable backends, and elegant interfaces that work flawlessly together.
