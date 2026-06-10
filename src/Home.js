@@ -30,7 +30,7 @@ const otherTechstacks = [
 const projects = [
   {
     title: 'Gourmet Gamble',
-    image: 'https://i.pinimg.com/736x/67/d3/0e/67d30e658e9039a2aec79c3f490c7b26.jpg',
+    image: '/gourmetgamble.png',
     glowColor: '55, 114, 255',
     description: `A smart web platform built with React.js and Firebase that helps users turn
       everyday ingredients into practical, delicious meals. By entering what they have,
@@ -43,7 +43,7 @@ const projects = [
   },
   {
     title: 'Swiftsail',
-    image: 'https://i.pinimg.com/736x/4b/f2/eb/4bf2ebce5bc269ef241d7280dbacf315.jpg',
+    image: '/swiftsail.png',
     glowColor: '255, 66, 127',
     description: `A web-based ferry booking platform where operators list routes, schedules, and prices.
       Users can easily browse, compare, and book ferry trips in just a few clicks.
@@ -57,7 +57,7 @@ const projects = [
   },
   {
     title: 'Furwell',
-    image: 'https://i.pinimg.com/736x/6d/70/56/6d7056f62e27b04fd1258a8298ff4edb.jpg',
+    image: '/furwell.png',
     glowColor: '55, 255, 187',
     description: `A user-friendly platform connecting pet owners with nearby veterinary clinics.
       Users can quickly find clinics and book appointments online,
@@ -70,12 +70,12 @@ const projects = [
   },
   {
     title: 'Dismap',
-    placeholder: { icon: 'fas fa-map-marked-alt', className: 'placeholder-orange' },
+    image: '/dismap.png',
     glowColor: '255, 185, 55',
     description: `A disease surveillance mapping system for Cebu City that visualizes outbreak data
       across barangays in real time, helping health authorities track, monitor, and
       respond to disease trends more effectively.`,
-    tech: ['React', 'Firebase', 'Maps API'],
+    tech: ['PHP Laravel', 'Dart','Flutter', 'MySQL', 'Maps API'],
     links: [
       { label: 'View Code', icon: 'fas fa-code', url: 'https://github.com/Mier03/DisMap' },
     ],
@@ -94,10 +94,7 @@ const projects = [
   },
 ];
 
-// Continuous, looping carousel: renders 3 copies of `items` and slides through
-// them with `trackIndex`, snapping (without a transition) back to the middle
-// copy once it scrolls past either end so it can keep going forever.
-function useTechCarousel(items, intervalMs = 3000) {
+function useCarousel(items, intervalMs = 3000) {
   const base = items.length;
   const extended = [...items, ...items, ...items];
 
@@ -107,6 +104,16 @@ function useTechCarousel(items, intervalMs = 3000) {
 
   const next = () => setTrackIndex((prev) => prev + 1);
   const prev = () => setTrackIndex((prev) => prev - 1);
+
+  const goTo = (target) => {
+    setTrackIndex((prevTrack) => {
+      const current = ((prevTrack % base) + base) % base;
+      let diff = target - current;
+      if (diff > base / 2) diff -= base;
+      if (diff < -base / 2) diff += base;
+      return prevTrack + diff;
+    });
+  };
 
   useEffect(() => {
     if (trackIndex >= base * 2 || trackIndex < base) {
@@ -138,34 +145,13 @@ function useTechCarousel(items, intervalMs = 3000) {
 
   const activeIndex = ((trackIndex % base) + base) % base;
 
-  return { extended, trackIndex, activeIndex, next, prev, setPaused, noTransition };
+  return { extended, trackIndex, activeIndex, next, prev, goTo, setPaused, noTransition };
 }
 
 function Home() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const projectCount = projects.length;
-
-  const mainTech = useTechCarousel(mainTechstacks);
-  const otherTech = useTechCarousel(otherTechstacks);
-
-  const goToIndex = (index) => {
-    setActiveIndex(((index % projectCount) + projectCount) % projectCount);
-  };
-
-  const handlePrev = () => goToIndex(activeIndex - 1);
-  const handleNext = () => goToIndex(activeIndex + 1);
-
-  useEffect(() => {
-    if (isPaused) return undefined;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
-
-    const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % projectCount);
-    }, 5000);
-
-    return () => clearInterval(timer);
-  }, [isPaused, projectCount]);
+  const mainTech = useCarousel(mainTechstacks);
+  const otherTech = useCarousel(otherTechstacks);
+  const projectsCarousel = useCarousel(projects, 5000);
 
   return (
     <>
@@ -177,10 +163,10 @@ function Home() {
           {/* Profile Image */}
           <div className="profile-section">
             <div className="profile-image-container">
-              <img 
-                src="https://i.pinimg.com/736x/f9/e0/0f/f9e00f9615e0d86a5a7f02caebd00486.jpg"  
-                alt="Elaisha Mae Arias" 
-                className="profile-image" 
+              <img
+                src="/elai.jpg"
+                alt="Elaisha Mae Arias"
+                className="profile-image"
               />
             </div>
           </div>
@@ -320,24 +306,27 @@ function Home() {
 
           <div
             className="projects-carousel"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
+            onMouseEnter={() => projectsCarousel.setPaused(true)}
+            onMouseLeave={() => projectsCarousel.setPaused(false)}
           >
             <button
               type="button"
               className="carousel-arrow carousel-arrow-left"
-              onClick={handlePrev}
+              onClick={projectsCarousel.prev}
               aria-label="Previous project"
             >
               <i className="fas fa-chevron-left"></i>
             </button>
 
             <div className="projects-track-viewport">
-              <div className="projects-track" style={{ '--active-index': activeIndex }}>
-                {projects.map((project, index) => (
+              <div
+                className={`projects-track${projectsCarousel.noTransition ? ' no-transition' : ''}`}
+                style={{ '--active-index': projectsCarousel.trackIndex }}
+              >
+                {projectsCarousel.extended.map((project, index) => (
                   <div
-                    key={project.title}
-                    className={`project-card${index === activeIndex ? ' active' : ''}`}
+                    key={`${project.title}-${index}`}
+                    className={`project-card${index % projects.length === projectsCarousel.activeIndex ? ' active' : ''}`}
                     style={{ '--glow-color': project.glowColor }}
                   >
                     {project.placeholder ? (
@@ -377,7 +366,7 @@ function Home() {
             <button
               type="button"
               className="carousel-arrow carousel-arrow-right"
-              onClick={handleNext}
+              onClick={projectsCarousel.next}
               aria-label="Next project"
             >
               <i className="fas fa-chevron-right"></i>
@@ -389,8 +378,8 @@ function Home() {
               <button
                 key={project.title}
                 type="button"
-                className={`carousel-dot${index === activeIndex ? ' active' : ''}`}
-                onClick={() => goToIndex(index)}
+                className={`carousel-dot${index === projectsCarousel.activeIndex ? ' active' : ''}`}
+                onClick={() => projectsCarousel.goTo(index)}
                 aria-label={`Go to ${project.title}`}
               ></button>
             ))}
