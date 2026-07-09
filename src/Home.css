@@ -34,7 +34,7 @@ body {
 /* Offset anchor scroll targets so the sticky navbar doesn't cover the section content */
 #home,
 #main-techstacks,
-#other-techstacks,
+#technologies,
 #projects,
 #footer {
   scroll-margin-top: 80px;
@@ -156,7 +156,15 @@ body {
   color: #0f172a;
 }
 
-/* Tech Stacks Section - Main and Other */
+.section-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 60px;
+  letter-spacing: 2px;
+  text-align: center;
+  color: #bae6fd;
+}
+
 /* Main Tech Stacks */
 .techstacks-section {
   padding: 60px 0;
@@ -168,15 +176,6 @@ body {
   justify-content: center;
   background-color: #1e293b;
   border-bottom: 3px solid rgba(255, 255, 255, 0.1);
-}
-
-.section-title {
-  font-size: 36px;
-  font-weight: 700;
-  margin-bottom: 60px;
-  letter-spacing: 2px;
-  text-align: center;
-  color: #bae6fd;
 }
 
 .techstack-carousel {
@@ -194,8 +193,7 @@ body {
   padding: 10px 0;
 }
 
-.techstack-track,
-.other-techstack-track {
+.techstack-track {
   --tech-width: 130px;
   --tech-gap: 16px;
   --tech-step: calc(var(--tech-width) + var(--tech-gap));
@@ -208,9 +206,71 @@ body {
   will-change: transform;
 }
 
-.techstack-track.no-transition,
-.other-techstack-track.no-transition {
+.techstack-track.no-transition {
   transition: none;
+}
+
+/* Technologies Section (replaces the former "Other Techstacks" section) */
+.other-techstacks-section {
+  padding: 60px 0;
+  color: #1e293b;
+  text-align: center;
+  background-color: #83B9EF;
+  min-height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.other-techstacks-section .section-title {
+  color: #1e293b;
+  margin-bottom: 32px;
+}
+
+.tech-filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.tech-filter-pill {
+  border: none;
+  cursor: pointer;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(6px);
+  color: #1e293b;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.tech-filter-pill:hover {
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateY(-1px);
+}
+
+.tech-filter-pill.active {
+  background-color: #1e293b;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(30, 41, 59, 0.25);
+}
+
+.tech-filter-pill.active:hover {
+  background-color: #334155;
+}
+
+/* Static (non-looping) single row for categories with few enough items to fit without scrolling */
+.tech-row-static {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .techstack-item {
@@ -293,42 +353,28 @@ body {
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.3px;
+  line-height: 1.3;
   color: white;
   text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
   max-width: 100%;
 }
 
-/* Other Tech Stacks */
-.other-techstacks-section {
-  padding: 60px 0;
-  color: #1e293b;
-  text-align: center;
-  background-color: #83B9EF;
-  min-height: 30vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.other-techstacks-section .section-title {
-  color: #1e293b;
-  margin-bottom: 40px;
-}
-
-.other-techstack-track .techstack-item {
+/* Light card variant for the Technologies grid (sits on the blue section bg) */
+.tech-grid-item {
   background: rgba(30, 41, 59, 0.06);
   border: 1px solid rgba(30, 41, 59, 0.1);
 }
 
-.other-techstack-track .techstack-item span {
+.tech-grid-item .tech-icon {
   color: #1e293b;
 }
 
-.other-techstack-track .techstack-item:hover,
-.other-techstack-track .techstack-item.active {
+.tech-grid-item span {
+  color: #1e293b;
+}
+
+.tech-grid-item:hover {
   background: rgba(255, 255, 255, 0.5);
 }
 
@@ -369,15 +415,22 @@ body {
     gap: 8px;
   }
 
-  .techstack-track,
-  .other-techstack-track {
+  .techstack-track {
     --tech-width: 100px;
     --tech-gap: 12px;
+  }
+
+  .tech-row-static {
+    gap: 12px;
   }
 
   .techstack-item {
     gap: 8px;
     padding: 14px 8px;
+  }
+
+  .tech-grid-item {
+    width: 100px;
   }
 
   .tech-icon {
