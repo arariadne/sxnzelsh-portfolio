@@ -16,15 +16,83 @@ const mainTechstacks = [
   { label: 'TAILWIND CSS', icon: 'https://icon.icepanel.io/Technology/svg/Tailwind-CSS.svg', glowColor: '56, 189, 248' },
 ];
 
-const otherTechstacks = [
-  { label: 'ARDUINO', icon: 'https://icon.icepanel.io/Technology/svg/Arduino.svg', glowColor: '0, 151, 156' },
-  { label: 'C', icon: 'https://icon.icepanel.io/Technology/svg/C.svg', glowColor: '168, 176, 184' },
-  { label: 'C#', icon: 'https://icon.icepanel.io/Technology/svg/C%23-%28CSharp%29.svg', glowColor: '35, 145, 52' },
-  { label: 'C++', icon: 'https://icon.icepanel.io/Technology/svg/C%2B%2B-%28CPlusPlus%29.svg', glowColor: '0, 89, 156' },
-  { label: 'JAVA', icon: 'https://icon.icepanel.io/Technology/svg/Java.svg', glowColor: '240, 152, 32' },
-  { label: 'GRAPHQL', icon: 'https://icon.icepanel.io/Technology/svg/GraphQL.svg', glowColor: '229, 53, 153' },
-  { label: 'THREE.JS', icon: 'https://icon.icepanel.io/Technology/svg/Three.js.svg', glowColor: '30, 41, 59' },
-  { label: 'PYTHON', icon: 'https://icon.icepanel.io/Technology/svg/Python.svg', glowColor: '55, 118, 171' },
+const techCategories = [
+  { key: 'development', label: 'Development' },
+  { key: 'design', label: 'Design' },
+  { key: 'environment', label: 'Environment' },
+  { key: 'admin', label: 'Admin' },
+  { key: 'communications', label: 'Communications' },
+  { key: 'all', label: 'All' },
+];
+
+const technologies = [
+  // Development
+  { label: 'React', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/React.svg', glowColor: '97, 218, 251' },
+  { label: 'Next.js', category: 'development', icon: 'https://icon.icepanel.io/Technology/png-shadow-512/Next.js.png', glowColor: '30, 41, 59' },
+  { label: 'Vite', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/Vite.js.svg', glowColor: '100, 108, 255' },
+  { label: 'Node.js', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/Node.js.svg', glowColor: '83, 163, 81' },
+  { label: 'Express.js', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/Express.svg', glowColor: '55, 255, 187' },
+  { label: 'Firebase', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/Firebase.svg', glowColor: '255, 202, 40' },
+  { label: 'Supabase', category: 'development', icon: 'https://icon.icepanel.io/custom/svg/supabase.svg', glowColor: '62, 207, 142' },
+  { label: 'JavaScript', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/JavaScript.svg', glowColor: '240, 219, 79' },
+  { label: 'TypeScript', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/TypeScript.svg', glowColor: '49, 120, 198' },
+  { label: 'HTML5 / CSS3', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/HTML5.svg', glowColor: '227, 79, 38' },
+  { label: 'Sass/SCSS', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/Sass.svg', glowColor: '207, 100, 154' },
+  { label: 'Tailwind CSS', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/Tailwind-CSS.svg', glowColor: '56, 189, 248' },
+  { label: 'Angular', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/Angular.svg', glowColor: '221, 46, 16' },
+  { label: 'Laravel (PHP)', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/Laravel.svg', glowColor: '255, 45, 85' },
+  { label: 'SQL', category: 'development', iconClass: 'fas fa-database', glowColor: '0, 89, 156' },
+  { label: 'C', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/C.svg', glowColor: '168, 176, 184' },
+  { label: 'C#', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/C%23-%28CSharp%29.svg', glowColor: '35, 145, 52' },
+  { label: 'C++', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/C%2B%2B-%28CPlusPlus%29.svg', glowColor: '0, 89, 156' },
+  { label: 'Java', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/Java.svg', glowColor: '240, 152, 32' },
+  { label: 'Python', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/Python.svg', glowColor: '55, 118, 171' },
+  { label: 'GraphQL', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/GraphQL.svg', glowColor: '229, 53, 153' },
+  { label: 'Three.js', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/Three.js.svg', glowColor: '100, 100, 255' },
+  { label: 'Arduino', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/Arduino.svg', glowColor: '0, 151, 156' },
+  { label: 'Flutter', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/Flutter.svg', glowColor: '2, 161, 241' },
+  { label: 'Expo', category: 'development', iconClass: 'fas fa-rocket', glowColor: '30, 41, 59' },
+  { label: 'GitHub', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/GitHub.svg', glowColor: '88, 96, 105' },
+  { label: 'Git', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/Git.svg', glowColor: '240, 80, 51' },
+  { label: 'Vercel', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/Vercel.svg', glowColor: '30, 41, 59' },
+  { label: 'Docker', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/Docker.svg', glowColor: '13, 146, 244' },
+  { label: 'AWS', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/AWS.svg', glowColor: '255, 153, 0' },
+  { label: 'MongoDB', category: 'development', icon: 'https://icon.icepanel.io/Technology/svg/MongoDB.svg', glowColor: '71, 162, 72' },
+  { label: 'Stripe', category: 'development', icon: 'https://icon.icepanel.io/custom/svg/stripe.svg', glowColor: '99, 91, 255' },
+  { label: 'OpenAI API', category: 'development', icon: 'https://icon.icepanel.io/custom/svg/openai-chatgpt.svg', glowColor: '16, 163, 127' },
+  { label: 'Claude API', category: 'development', iconClass: 'fas fa-robot', glowColor: '217, 119, 87' },
+  { label: 'ChatGPT', category: 'development', icon: 'https://icon.icepanel.io/custom/svg/openai-chatgpt.svg', glowColor: '16, 163, 127' },
+
+  // Design
+  { label: 'Figma', category: 'design', icon: 'https://icon.icepanel.io/Technology/svg/Figma.svg', glowColor: '242, 78, 30' },
+  { label: 'Adobe Illustrator', category: 'design', icon: 'https://icon.icepanel.io/Technology/svg/Adobe-Illustrator.svg', glowColor: '255, 124, 0' },
+  { label: 'Photoshop', category: 'design', icon: 'https://icon.icepanel.io/Technology/svg/Adobe-Photoshop.svg', glowColor: '49, 125, 229' },
+  { label: 'UI/UX', category: 'design', iconClass: 'fas fa-pen-nib', glowColor: '166, 55, 255' },
+
+  // Environment
+  { label: 'VS Code', category: 'environment', icon: 'https://icon.icepanel.io/Technology/svg/Visual-Studio-Code-%28VS-Code%29.svg', glowColor: '0, 122, 204' },
+  { label: 'Visual Studio 2022', category: 'environment', icon: 'https://icon.icepanel.io/Technology/svg/Visual-Studio.svg', glowColor: '92, 45, 145' },
+  { label: 'Lovable', category: 'environment', iconClass: 'fas fa-heart', glowColor: '255, 66, 127' },
+  { label: 'Cursor', category: 'environment', iconClass: 'fas fa-i-cursor', glowColor: '30, 41, 59' },
+  { label: 'Android Studio', category: 'environment', icon: 'https://icon.icepanel.io/Technology/svg/Android-Studio.svg', glowColor: '61, 220, 132' },
+  { label: 'SourceTree', category: 'environment', icon: 'https://icon.icepanel.io/Technology/svg/Sourcetree.svg', glowColor: '15, 106, 181' },
+  { label: 'WordPress', category: 'environment', icon: 'https://icon.icepanel.io/Technology/svg/WordPress.svg', glowColor: '33, 117, 155' },
+
+  // Admin
+  { label: 'GoHighLevel', category: 'admin', iconClass: 'fas fa-bullseye', glowColor: '255, 185, 55' },
+  { label: 'Team Leadership', category: 'admin', iconClass: 'fas fa-users', glowColor: '55, 114, 255' },
+  { label: 'Recruitment', category: 'admin', iconClass: 'fas fa-user-plus', glowColor: '55, 255, 187' },
+  { label: 'Project Management', category: 'admin', iconClass: 'fas fa-tasks', glowColor: '166, 55, 255' },
+  { label: 'SEO', category: 'admin', iconClass: 'fas fa-search', glowColor: '227, 79, 38' },
+  { label: 'Google Ads', category: 'admin', icon: 'https://icon.icepanel.io/custom/svg/google-ads.svg', glowColor: '66, 133, 244' },
+  { label: 'Google Analytics', category: 'admin', icon: 'https://icon.icepanel.io/custom/svg/google-analytics.svg', glowColor: '244, 180, 0' },
+
+  // Communications
+  { label: 'Slack', category: 'communications', icon: 'https://icon.icepanel.io/Technology/svg/Slack.svg', glowColor: '74, 21, 75' },
+  { label: 'Microsoft Teams', category: 'communications', icon: 'https://icon.icepanel.io/custom/svg/microsoft-teams.svg', glowColor: '91, 86, 212' },
+  { label: 'Telegram', category: 'communications', icon: 'https://icon.icepanel.io/custom/svg/telegram.svg', glowColor: '0, 136, 204' },
+  { label: 'Gmail', category: 'communications', icon: 'https://icon.icepanel.io/custom/svg/gmail.svg', glowColor: '234, 67, 53' },
+  { label: 'Discord', category: 'communications', icon: 'https://icon.icepanel.io/custom/svg/discord.svg', glowColor: '88, 101, 242' },
 ];
 
 const projects = [
@@ -94,11 +162,11 @@ const projects = [
   },
 ];
 
-function useCarousel(items, intervalMs = 3000) {
+function useCarousel(items, intervalMs = 3000, enabled = true) {
   const base = items.length;
-  const extended = [...items, ...items, ...items];
+  const extended = enabled ? [...items, ...items, ...items] : items;
 
-  const [trackIndex, setTrackIndex] = useState(base);
+  const [trackIndex, setTrackIndex] = useState(enabled ? base : 0);
   const [paused, setPaused] = useState(false);
   const [noTransition, setNoTransition] = useState(false);
 
@@ -116,6 +184,7 @@ function useCarousel(items, intervalMs = 3000) {
   };
 
   useEffect(() => {
+    if (!enabled) return undefined;
     if (trackIndex >= base * 2 || trackIndex < base) {
       const timeout = setTimeout(() => {
         setNoTransition(true);
@@ -124,7 +193,7 @@ function useCarousel(items, intervalMs = 3000) {
       return () => clearTimeout(timeout);
     }
     return undefined;
-  }, [trackIndex, base]);
+  }, [trackIndex, base, enabled]);
 
   useEffect(() => {
     if (!noTransition) return undefined;
@@ -133,6 +202,7 @@ function useCarousel(items, intervalMs = 3000) {
   }, [noTransition]);
 
   useEffect(() => {
+    if (!enabled) return undefined;
     if (paused) return undefined;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
 
@@ -141,17 +211,100 @@ function useCarousel(items, intervalMs = 3000) {
     }, intervalMs);
 
     return () => clearTimeout(timer);
-  }, [trackIndex, paused, intervalMs]);
+  }, [trackIndex, paused, intervalMs, enabled]);
 
   const activeIndex = ((trackIndex % base) + base) % base;
 
   return { extended, trackIndex, activeIndex, next, prev, goTo, setPaused, noTransition };
 }
 
+// Renders technologies as a single row, matching the Main Techstacks carousel.
+// Categories that fit within one row render as a plain static row; larger
+// categories become a looping carousel with arrows and autoplay.
+function TechnologiesCarousel({ items }) {
+  const isCarousel = items.length > 8;
+  const carousel = useCarousel(items, 3000, isCarousel);
+
+  if (!isCarousel) {
+    return (
+      <div className="tech-row-static">
+        {items.map((tech) => (
+          <div
+            className="techstack-item tech-grid-item"
+            key={tech.label}
+            style={{ '--glow-color': tech.glowColor }}
+          >
+            <div className="tech-icon">
+              {tech.icon ? (
+                <img src={tech.icon} alt={tech.label} className="tech-logo" />
+              ) : (
+                <i className={tech.iconClass}></i>
+              )}
+            </div>
+            <span>{tech.label}</span>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className="techstack-carousel"
+      onMouseEnter={() => carousel.setPaused(true)}
+      onMouseLeave={() => carousel.setPaused(false)}
+    >
+      <button
+        type="button"
+        className="carousel-arrow carousel-arrow-left"
+        onClick={carousel.prev}
+        aria-label="Previous technologies"
+      >
+        <i className="fas fa-chevron-left"></i>
+      </button>
+      <div className="techstack-track-viewport">
+        <div
+          className={`techstack-track${carousel.noTransition ? ' no-transition' : ''}`}
+          style={{ '--active-index': carousel.trackIndex }}
+        >
+          {carousel.extended.map((tech, index) => (
+            <div
+              className="techstack-item tech-grid-item"
+              key={`${tech.label}-${index}`}
+              style={{ '--glow-color': tech.glowColor }}
+            >
+              <div className="tech-icon">
+                {tech.icon ? (
+                  <img src={tech.icon} alt={tech.label} className="tech-logo" />
+                ) : (
+                  <i className={tech.iconClass}></i>
+                )}
+              </div>
+              <span>{tech.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <button
+        type="button"
+        className="carousel-arrow carousel-arrow-right"
+        onClick={carousel.next}
+        aria-label="Next technologies"
+      >
+        <i className="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  );
+}
+
 function Home() {
   const mainTech = useCarousel(mainTechstacks);
-  const otherTech = useCarousel(otherTechstacks);
+  const [activeCategory, setActiveCategory] = useState('all');
   const projectsCarousel = useCarousel(projects, 5000);
+
+  const filteredTechnologies = activeCategory === 'all'
+    ? technologies
+    : technologies.filter((tech) => tech.category === activeCategory);
 
   return (
     <>
@@ -252,51 +405,25 @@ function Home() {
         </div>
       </section>
 
-      {/* Other Techstacks Section */}
-      <section id="other-techstacks" className="other-techstacks-section">
+      {/* Technologies Section (replaces the former "Other Techstacks" section) */}
+      <section id="technologies" className="other-techstacks-section">
         <div className="container">
-          <h2 className="section-title">OTHER TECHSTACKS</h2>
-          <div
-            className="techstack-carousel"
-            onMouseEnter={() => otherTech.setPaused(true)}
-            onMouseLeave={() => otherTech.setPaused(false)}
-          >
-            <button
-              type="button"
-              className="carousel-arrow carousel-arrow-left"
-              onClick={otherTech.prev}
-              aria-label="Previous techstack"
-            >
-              <i className="fas fa-chevron-left"></i>
-            </button>
-            <div className="techstack-track-viewport">
-              <div
-                className={`other-techstack-track${otherTech.noTransition ? ' no-transition' : ''}`}
-                style={{ '--active-index': otherTech.trackIndex }}
+          <h2 className="section-title">TECHNOLOGIES</h2>
+          <div className="tech-filter-pills" role="tablist" aria-label="Technology categories">
+            {techCategories.map((cat) => (
+              <button
+                key={cat.key}
+                type="button"
+                role="tab"
+                aria-selected={activeCategory === cat.key}
+                className={`tech-filter-pill${activeCategory === cat.key ? ' active' : ''}`}
+                onClick={() => setActiveCategory(cat.key)}
               >
-                {otherTech.extended.map((tech, index) => (
-                  <div
-                    className={`techstack-item${index % otherTechstacks.length === otherTech.activeIndex ? ' active' : ''}`}
-                    key={`${tech.label}-${index}`}
-                    style={{ '--glow-color': tech.glowColor }}
-                  >
-                    <div className="tech-icon">
-                      <img src={tech.icon} alt={tech.label} className="tech-logo" />
-                    </div>
-                    <span>{tech.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <button
-              type="button"
-              className="carousel-arrow carousel-arrow-right"
-              onClick={otherTech.next}
-              aria-label="Next techstack"
-            >
-              <i className="fas fa-chevron-right"></i>
-            </button>
+                {cat.label}
+              </button>
+            ))}
           </div>
+          <TechnologiesCarousel key={activeCategory} items={filteredTechnologies} />
         </div>
       </section>
 
