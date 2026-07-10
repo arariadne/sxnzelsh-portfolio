@@ -6,15 +6,63 @@
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
 
+:root {
+  --font-heading: 'Plus Jakarta Sans', 'Inter', Arial, sans-serif;
+  --font-body: 'Inter', Arial, sans-serif;
+  --accent-pink: rgb(255, 105, 180);
+  --accent-pink-light: rgb(255, 158, 210);
+  --glass-bg: rgba(15, 23, 42, 0.38);
+  --glass-bg-strong: rgba(15, 23, 42, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.16);
+  --nav-height: 96px;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: var(--font-body);
   background: transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Scroll-reveal: every section wraps its content in .container, so a single
+   rule fades/slides each section's content in the first time it scrolls
+   into view. Driven by useScrollReveal.js toggling the .in-view class. */
+.reveal-section > .container {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.reveal-section.in-view > .container {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-pink);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 @media (prefers-reduced-motion: reduce) {

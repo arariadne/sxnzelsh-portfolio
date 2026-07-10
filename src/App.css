@@ -4,94 +4,109 @@
   min-height: 100vh;
 }
 
-/* Enhanced Navbar Styles */
-.navbar {
-  background-color: #bfdbfe;
-  padding: 15px 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+/* Floating back-to-top button, appears after scrolling past the hero */
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 90;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-pink-light));
+  color: #ffffff;
+  font-size: 16px;
+  box-shadow: 0 10px 28px rgba(255, 105, 180, 0.4);
+  opacity: 0;
+  transform: translateY(16px) scale(0.9);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
 }
 
-.navbar:hover {
-  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.15);
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 14px 34px rgba(255, 105, 180, 0.5);
+}
+
+.back-to-top:active {
+  transform: translateY(0) scale(0.98);
+}
+
+@media print {
+  .back-to-top {
+    display: none !important;
+  }
+}
+
+/* Floating glassmorphism navbar - overlays the hero instead of sitting on
+   the page background, so there's no plain strip above the gradient. */
+.navbar {
+  background: transparent;
+  padding: 18px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  pointer-events: none;
 }
 
 .navbar-container {
   display: flex;
   justify-content: center;
-  gap: 30px;
-  max-width: 1200px;
+  align-items: center;
+  gap: 4px;
+  max-width: 620px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 8px;
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.35);
+  transition: box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  pointer-events: auto;
+}
+
+.navbar-container:hover {
+  box-shadow: 0 14px 48px rgba(15, 23, 42, 0.45);
 }
 
 .navbar-link {
-  color: #4b5563;
+  color: rgba(241, 245, 249, 0.85);
   text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 500;
-  padding: 8px 16px;
-  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 999px;
   position: relative;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   cursor: pointer;
-  overflow: hidden;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
-/* Improved hover effects */
 .navbar-link:hover {
-  color: #1e40af;
-  background-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-3px);
-  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.2);
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-pink-light));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255, 105, 180, 0.4);
 }
 
 .navbar-link:active {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
-}
-
-/* Animated link indicator */
-.navbar-link::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #3b82f6, #60a5fa);
-  transition: width 0.3s ease, left 0.3s ease;
-  transform: translateX(-50%);
-  border-radius: 3px;
-}
-
-.navbar-link:hover::before {
-  width: 80%;
-}
-
-/* Subtle ripple effect */
-.navbar-link::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 200px;
-  height: 200px;
-  background-color: rgba(59, 130, 246, 0.1);
-  border-radius: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  opacity: 0;
-  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
-  pointer-events: none;
-}
-
-.navbar-link:active::after {
-  transform: translate(-50%, -50%) scale(1);
-  opacity: 1;
-  transition: 0s;
+  transform: translateY(0);
 }
 
 /* Profile footer styles - using the compact design from previous stylesheet */
@@ -267,15 +282,21 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .navbar {
+    padding: 14px 16px;
+  }
+
   .navbar-container {
-    gap: 15px;
+    gap: 2px;
+    padding: 6px;
+    max-width: 100%;
   }
-  
+
   .navbar-link {
-    font-size: 1rem;
-    padding: 6px 12px;
+    font-size: 0.85rem;
+    padding: 9px 14px;
   }
-  
+
   .footer-content {
     flex-direction: column;
     text-align: center;
