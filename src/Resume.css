@@ -1,14 +1,15 @@
 /* Resume Page */
 .resume-page {
   background-color: #f0f4f8;
-  min-height: calc(100vh - 60px);
+  min-height: 100vh;
+  padding-top: var(--nav-height);
   padding-bottom: 60px;
 }
 
 /* Toolbar with action buttons */
 .resume-toolbar {
   position: sticky;
-  top: 60px;
+  top: var(--nav-height);
   z-index: 50;
   background: linear-gradient(180deg, #f0f4f8 60%, rgba(240, 244, 248, 0));
   padding: 24px 20px 12px;

@@ -1,9 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
 import Home from './Home';
 import Footer from './Footer';
 import Resume from './Resume';
+
+function BackToTop() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setVisible(window.scrollY > 500);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <button
+      type="button"
+      className={`back-to-top${visible ? ' visible' : ''}`}
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      aria-label="Back to top"
+      tabIndex={visible ? 0 : -1}
+    >
+      <i className="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+  );
+}
 
 function AppContent() {
   const navigate = useNavigate();
@@ -57,26 +80,23 @@ function AppContent() {
           <Link to="/resume" className="navbar-link">
             Resume
           </Link>
-          <span
-            onClick={() => scrollToSection('footer')}
-            className="navbar-link"
-          >
-            Contact Me
-          </span>
         </div>
       </nav>
-      <Routes>
-        <Route
-          path="/"
-          element={(
-            <>
-              <Home />
-              <Footer />
-            </>
-          )}
-        />
-        <Route path="/resume" element={<Resume />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route
+            path="/"
+            element={(
+              <>
+                <Home />
+                <Footer />
+              </>
+            )}
+          />
+          <Route path="/resume" element={<Resume />} />
+        </Routes>
+      </main>
+      <BackToTop />
     </div>
   );
 }

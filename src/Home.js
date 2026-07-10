@@ -1,6 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import './Home.css';
 import InteractiveBackground from './InteractiveBackground';
+import useScrollReveal from './useScrollReveal';
+
+const socialLinks = [
+  {
+    name: 'GitHub',
+    label: 'github.com/arariadne',
+    url: 'https://github.com/arariadne',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+      </svg>
+    ),
+  },
+  {
+    name: 'LinkedIn',
+    label: 'linkedin.com/in/elaisha-arias',
+    url: 'https://linkedin.com/in/elaisha-arias',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M22.23 0H1.77C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.77 24h20.46c.978 0 1.77-.773 1.77-1.729V1.729C24 .774 23.208 0 22.23 0zM7.12 20.452H3.56V9h3.56v11.452zM5.34 7.433c-1.144 0-2.07-.926-2.07-2.07 0-1.143.926-2.07 2.07-2.07 1.143 0 2.07.927 2.07 2.07 0 1.144-.927 2.07-2.07 2.07zM20.452 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.85-3.037-1.851 0-2.134 1.446-2.134 2.94v5.666H9.36V9h3.413v1.561h.049c.476-.9 1.637-1.85 3.37-1.85 3.602 0 4.267 2.372 4.267 5.457v6.284z" />
+      </svg>
+    ),
+  },
+  {
+    name: 'Facebook',
+    label: 'facebook.com/elaisha.arias',
+    url: 'https://facebook.com/elaisha.arias',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24h11.494v-9.294H9.692v-3.622h3.127V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24h-1.918c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.407 24 24 23.407 24 22.676V1.325C24 .593 23.407 0 22.675 0z" />
+      </svg>
+    ),
+  },
+];
 
 const mainTechstacks = [
   { label: 'REACTJS', icon: 'https://icon.icepanel.io/Technology/svg/React.svg', glowColor: '97, 218, 251' },
@@ -162,6 +196,24 @@ const projects = [
   },
 ];
 
+const certificates = [
+  {
+    title: 'React Foundations for Next.js',
+    issuer: 'Next.js by Vercel',
+    url: 'https://nextjs.org/learn/certificate?course=react-foundations&user=162038&certId=react-foundations-162038-1782847047677',
+  },
+  {
+    title: 'Next.js App Router Fundamentals',
+    issuer: 'Next.js by Vercel',
+    url: 'https://nextjs.org/learn/certificate?course=dashboard-app&user=162038&certId=dashboard-app-162038-1782846640929',
+  },
+  {
+    title: 'Next.js SEO Fundamentals',
+    issuer: 'Next.js by Vercel',
+    url: 'https://nextjs.org/learn/certificate?course=seo&user=162038&certId=seo-162038-1782845828834',
+  },
+];
+
 function useCarousel(items, intervalMs = 3000, enabled = true) {
   const base = items.length;
   const extended = enabled ? [...items, ...items, ...items] : items;
@@ -302,6 +354,11 @@ function Home() {
   const [activeCategory, setActiveCategory] = useState('all');
   const projectsCarousel = useCarousel(projects, 5000);
 
+  const [techstacksRef, techstacksVisible] = useScrollReveal();
+  const [technologiesRef, technologiesVisible] = useScrollReveal();
+  const [projectsRef, projectsVisible] = useScrollReveal();
+  const [certificatesRef, certificatesVisible] = useScrollReveal();
+
   const filteredTechnologies = activeCategory === 'all'
     ? technologies
     : technologies.filter((tech) => tech.category === activeCategory);
@@ -309,18 +366,25 @@ function Home() {
   return (
     <>
       {/* Main Home Section */}
-      <section id="home" className="home-container">
+      <header id="home" className="home-container">
       <div className="home-background"></div>
       <InteractiveBackground />
       <div className="home-content">
           {/* Profile Image */}
           <div className="profile-section">
-            <div className="profile-image-container">
-              <img
-                src="/elai.jpg"
-                alt="Elaisha Mae Arias"
-                className="profile-image"
-              />
+            <div className="profile-visual">
+              <div className="profile-blob" aria-hidden="true"></div>
+              <div className="profile-frame">
+                <img
+                  src="/elai.jpg"
+                  alt="Elaisha Mae Arias"
+                  className="profile-image"
+                />
+              </div>
+              <div className="profile-badge">
+                <i className="fas fa-code" aria-hidden="true"></i>
+                <span>Full-Stack Dev</span>
+              </div>
             </div>
           </div>
 
@@ -329,32 +393,57 @@ function Home() {
             <p className="greeting">Hi! I'm</p>
             <h1 className="name">ELAISHA MAE M. ARIAS</h1>
             <h2 className="title">UI/UX Designer and Fullstack Developer</h2>
-            
+
             <p className="bio">
               A full-stack developer and UI/UX designer specializing in engineering AI-powered platforms and seamless digital products. I bridge the gap between design and development by integrating advanced LLM APIs into robust system architectures while maintaining a strict focus on intuitive user experiences. I deliver clean code, scalable backends, and elegant interfaces that work flawlessly together.
             </p>
 
+            {/* Call to Action */}
+            <div className="hero-actions">
+              <a href="#projects" className="cta-button primary">
+                View Work
+                <i className="fas fa-arrow-right" aria-hidden="true"></i>
+              </a>
+              <a
+                href="/resume.pdf"
+                download="Elaisha_Mae_Arias_Resume.pdf"
+                className="cta-button secondary"
+              >
+                <i className="fas fa-download" aria-hidden="true"></i>
+                Download Resume
+              </a>
+            </div>
+
             {/* Social Links */}
             <div className="social-links">
-              <a href="https://github.com/arariadne" target="_blank" rel="noopener noreferrer" className="social-link">
-                <i className="fab fa-github"></i>
-                <span>github.com/arariadne</span>
-              </a>
-              <a href="https://linkedin.com/in/elaisha-arias" target="_blank" rel="noopener noreferrer" className="social-link">
-                <i className="fab fa-linkedin"></i>
-                <span>linkedin.com/in/elaisha-arias</span>
-              </a>
-              <a href="https://facebook.com/elaisha.arias" target="_blank" rel="noopener noreferrer" className="social-link">
-                <i className="fab fa-facebook"></i>
-                <span>facebook.com/elaisha.arias</span>
-              </a>
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-link"
+                  aria-label={social.label}
+                >
+                  {social.icon}
+                  <span className="visually-hidden">{social.label}</span>
+                </a>
+              ))}
             </div>
           </div>
         </div>
-      </section>
+
+        <a href="#main-techstacks" className="scroll-cue" aria-label="Scroll to explore">
+          <i className="fas fa-chevron-down" aria-hidden="true"></i>
+        </a>
+      </header>
 
       {/* Main Techstacks Section */}
-      <section id="main-techstacks" className="techstacks-section">
+      <section
+        id="main-techstacks"
+        ref={techstacksRef}
+        className={`techstacks-section reveal-section${techstacksVisible ? ' in-view' : ''}`}
+      >
         <div className="container">
           <h2 className="section-title">MY MAIN TECHSTACKS</h2>
           <div
@@ -406,7 +495,11 @@ function Home() {
       </section>
 
       {/* Technologies Section (replaces the former "Other Techstacks" section) */}
-      <section id="technologies" className="other-techstacks-section">
+      <section
+        id="technologies"
+        ref={technologiesRef}
+        className={`other-techstacks-section reveal-section${technologiesVisible ? ' in-view' : ''}`}
+      >
         <div className="container">
           <h2 className="section-title">TECHNOLOGIES</h2>
           <div className="tech-filter-pills" role="tablist" aria-label="Technology categories">
@@ -427,7 +520,11 @@ function Home() {
         </div>
       </section>
 
-      <section id="projects" className="projects-section">
+      <section
+        id="projects"
+        ref={projectsRef}
+        className={`projects-section reveal-section${projectsVisible ? ' in-view' : ''}`}
+      >
         <div className="container">
           <h2 className="section-title">MY PROJECTS</h2>
 
@@ -509,6 +606,38 @@ function Home() {
                 onClick={() => projectsCarousel.goTo(index)}
                 aria-label={`Go to ${project.title}`}
               ></button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Certificates Section */}
+      <section
+        id="certificates"
+        ref={certificatesRef}
+        className={`certificates-section reveal-section${certificatesVisible ? ' in-view' : ''}`}
+      >
+        <div className="container">
+          <h2 className="section-title">CERTIFICATES</h2>
+          <div className="certificates-grid">
+            {certificates.map((cert) => (
+              <a
+                key={cert.title}
+                href={cert.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="certificate-card"
+              >
+                <div className="certificate-icon">
+                  <i className="fas fa-award" aria-hidden="true"></i>
+                </div>
+                <h3 className="certificate-title">{cert.title}</h3>
+                <p className="certificate-issuer">{cert.issuer}</p>
+                <span className="certificate-link">
+                  View Certificate
+                  <i className="fas fa-external-link-alt" aria-hidden="true"></i>
+                </span>
+              </a>
             ))}
           </div>
         </div>

@@ -1,9 +1,16 @@
 import React from 'react';
 import './Footer.css';
+import useScrollReveal from './useScrollReveal';
 
 function Footer() {
+  const [footerRef, footerVisible] = useScrollReveal();
+
   return (
-    <footer id="footer" className="profile-footer">
+    <footer
+      id="footer"
+      ref={footerRef}
+      className={`profile-footer reveal-section${footerVisible ? ' in-view' : ''}`}
+    >
       <div className="container">
         <div className="footer-content">
           <div className="contact-col">

@@ -63,6 +63,8 @@ const InteractiveBackground = () => {
           width: 100%;
           height: 100%;
           position: absolute;
+          top: 0;
+          left: 0;
           overflow: hidden;
           background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
         }
