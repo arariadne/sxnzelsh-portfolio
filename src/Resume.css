@@ -98,7 +98,16 @@
   font-weight: 700;
   color: #01357d;
   letter-spacing: 0.5px;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
+}
+
+.resume-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 14px;
 }
 
 .resume-contact {

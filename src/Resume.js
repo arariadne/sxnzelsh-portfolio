@@ -10,12 +10,24 @@ const contactLinks = [
 
 const experience = [
   {
+    role: 'Full Stack Developer',
+    org: 'Best Life Foundry AI',
+    date: 'July 2026 - Present',
+    bullets: [
+      'Contracted to lead full-stack development across a suite of interconnected client applications using React, TypeScript, Vite, Supabase (Postgres, Auth, Storage, Edge Functions), and Node.js.',
+      'Delivered native Android/iOS builds by integrating Capacitor into an existing React/Vite web app, resolving CI/CD pipeline failures on Codemagic and validating releases on physical devices.',
+      'Conducted full-scale security audits across production applications, identifying and remediating critical vulnerabilities including unauthenticated edge functions, exposed storage buckets, and overly permissive database access policies.',
+      'Diagnosed and resolved complex cross-system data sync issues (bidirectional contact sync, third-party CRM/PMS integrations, document export pipelines), improving data reliability across the product suite.',
+    ],
+  },
+  {
     role: 'Freelance Full Stack Developer',
     date: 'December 2025 - April 2026',
     bullets: [
       'Engineered a production-grade e-commerce marketplace using React.js for a dynamic frontend and Node.js/Express for a robust, scalable API.',
       'Deployed a fully containerized architecture using Docker and AWS ECS, utilizing PostgreSQL with optimized indexing to handle high-frequency concurrent transaction data.',
       'Integrated Stripe API for secure, multi-currency payment processing and implemented automated webhooks to streamline order fulfillment and real-time shipping tracking.',
+      'Implemented JWT-based authentication and role-based access control (RBAC) to secure customer, vendor, and admin-facing endpoints across the platform.',
     ],
   },
   {
@@ -37,36 +49,6 @@ const education = {
   bullets: ['Former Vice President-External and Head of External Affairs (ICpEP.SE CIT-U)'],
 };
 
-const projectExperience = [
-  {
-    title: 'Dismap',
-    bullets: [
-      'Developed a disease monitoring system with a Laravel (PHP) web backend and Flutter mobile application.',
-      'Built APIs and database logic for managing and tracking disease reports.',
-      'Implemented responsive web interfaces using Blade templating.',
-      'Integrated the mobile app with backend services for real-time data synchronization.',
-    ],
-  },
-  {
-    title: 'Furwell',
-    bullets: [
-      'Designed and developed UI/UX layouts focused on user-friendly interaction and accessibility.',
-      'Built and maintained responsive front-end features using React and Firebase.',
-      'Designed, developed, and trained an AI-powered chatbot to respond intelligently to user inquiries, improving engagement and support.',
-      'Contributed to backend logic for stability, security, and performance optimization.',
-    ],
-  },
-  {
-    title: 'Swiftsail Ferries',
-    bullets: [
-      'Designed a responsive, ferry booking platform focused on streamlined user journeys and real-time updates.',
-      'Developed full stack systems with React for the front-end and Firebase for back-end services.',
-      'Built an intelligent AI chatbot to guide users through ferry schedules, fare queries, and FAQs.',
-      'Created interactive UI components optimized for both mobile and desktop devices.',
-    ],
-  },
-];
-
 const skillCategories = [
   {
     label: 'Languages & Libraries',
@@ -74,7 +56,7 @@ const skillCategories = [
   },
   {
     label: 'Databases & Tools',
-    value: 'SQL, Firebase, Microsoft Access, MongoDB, Supabase, Git, GitHub, SourceTree, Visual Studio 2022, Visual Studio Code, AWS, Docker, Figma, WordPress, Android Studio, Lovable, Claude AI, ChatGPT, Cursor AI',
+    value: 'SQL, Firebase, Microsoft Access, MongoDB, Supabase, Git, GitHub, SourceTree, Visual Studio 2022, Visual Studio Code, AWS, Docker, Figma, WordPress, Flutter, Android Studio, Lovable, Claude AI, ChatGPT, Cursor AI',
   },
   {
     label: 'Certificates',
@@ -109,6 +91,7 @@ function Resume() {
       <div className="resume-sheet">
         <header className="resume-header">
           <h1 className="resume-name">Elaisha Mae M. Arias</h1>
+          <p className="resume-title">Full-Stack Software Developer</p>
           <div className="resume-contact">
             {contactLinks.map((item, index) => (
               <React.Fragment key={item.label}>
@@ -130,12 +113,13 @@ function Resume() {
         <section className="resume-section">
           <h2 className="resume-section-title">Summary</h2>
           <p className="resume-summary">
-            A Computer Engineer with a strong foundation in full-stack web development, cloud computing, and
-            hardware-software systems. Proficient in building scalable, user-friendly applications using
-            JavaScript, React.js, Next.js, and Laravel. Experienced in leveraging cloud infrastructure, while
-            demonstrating technical proficiency in embedded systems and networking roles. Passionate about
-            bridging software development and systems engineering to deliver innovative, end-to-end technical
-            solutions.
+            Full-stack developer with a Computer Engineering foundation, specializing in React, TypeScript,
+            Next.js, and Supabase to build and ship production-grade web and mobile applications. Experienced
+            across the full lifecycle, from architecting scalable APIs and cloud infrastructure to native mobile
+            deployment via Capacitor, with a track record of resolving complex system integrations and conducting
+            security audits on live applications. Combines strong software engineering fundamentals with
+            systems-level thinking from a hardware and embedded background, delivering reliable, end-to-end
+            technical solutions.
           </p>
         </section>
 
@@ -175,20 +159,6 @@ function Resume() {
               ))}
             </ul>
           </div>
-        </section>
-
-        <section className="resume-section">
-          <h2 className="resume-section-title">Project Experience</h2>
-          {projectExperience.map((project) => (
-            <div className="resume-entry" key={project.title}>
-              <h3 className="resume-entry-title">{project.title}</h3>
-              <ul className="resume-bullets">
-                {project.bullets.map((bullet) => (
-                  <li key={bullet}>{bullet}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
         </section>
 
         <section className="resume-section resume-skills-section">
