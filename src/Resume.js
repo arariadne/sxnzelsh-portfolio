@@ -60,7 +60,7 @@ const skillCategories = [
   },
   {
     label: 'Certificates',
-    value: 'React Foundations for Next.js, Next.js App Router Fundamentals, Next.js SEO Fundamentals',
+    value: 'React Foundations for Next.js, Next.js App Router Fundamentals, Next.js SEO Fundamentals, Yoast SEO for WordPress',
   },
   {
     label: 'Soft Skills',

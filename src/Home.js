@@ -212,6 +212,12 @@ const certificates = [
     issuer: 'Next.js by Vercel',
     url: 'https://nextjs.org/learn/certificate?course=seo&user=162038&certId=seo-162038-1782845828834',
   },
+  {
+    title: 'Yoast SEO for WordPress',
+    issuer: 'Yoast Academy',
+    url: 'https://academy.yoast.com/certificate/4484/1984746/3509565ab2a42c95d035b2fe3f426c7a/1/',
+    badge: 'https://academy.yoast.com/badge/4484/1984746/3509565ab2a42c95d035b2fe3f426c7a/1/',
+  },
 ];
 
 function useCarousel(items, intervalMs = 3000, enabled = true) {
@@ -628,9 +634,13 @@ function Home() {
                 rel="noopener noreferrer"
                 className="certificate-card"
               >
-                <div className="certificate-icon">
-                  <i className="fas fa-award" aria-hidden="true"></i>
-                </div>
+                {cert.badge ? (
+                  <img src={cert.badge} alt={`Badge for ${cert.title}`} className="certificate-badge" width="200" />
+                ) : (
+                  <div className="certificate-icon">
+                    <i className="fas fa-award" aria-hidden="true"></i>
+                  </div>
+                )}
                 <h3 className="certificate-title">{cert.title}</h3>
                 <p className="certificate-issuer">{cert.issuer}</p>
                 <span className="certificate-link">

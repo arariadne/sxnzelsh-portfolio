@@ -1055,6 +1055,12 @@ body {
   box-shadow: 0 12px 26px rgba(255, 105, 180, 0.35);
 }
 
+.certificate-badge {
+  max-width: 140px;
+  height: auto;
+  border-radius: 8px;
+}
+
 .certificate-title {
   font-family: var(--font-heading);
   font-size: 17px;
