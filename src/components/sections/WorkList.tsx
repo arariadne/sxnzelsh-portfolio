@@ -1,7 +1,7 @@
 import { useRef, useState, type PointerEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, m, useMotionValue, useSpring } from 'motion/react';
-import { indexProjects } from '../../data/projects';
+import { projects } from '../../data/projects';
 import type { Project } from '../../data/types';
 import { ease } from '../../lib/motion';
 import { setSharedSource } from '../../lib/sharedImage';
@@ -13,7 +13,7 @@ const meta = (p: Project) => `${p.type} · ${p.tech.join(', ')}`;
 /** Card contents: real screenshot, or a flat placeholder when there is none yet. */
 function Thumb({ project, sizes }: { project: Project; sizes: string }) {
   if (!project.image) {
-    // TODO(content): no screenshot yet (Agribot).
+    // Shown only if a project has no screenshot yet.
     return (
       <span className="font-heavy flex h-full w-full items-center justify-center bg-apricot text-[22px] tracking-tight text-plum">
         {project.title}
@@ -26,9 +26,10 @@ function Thumb({ project, sizes }: { project: Project; sizes: string }) {
 /**
  * The printed-contents index of projects. On fine pointers, a tilted preview of
  * the hovered project follows the cursor with a slight lag; on touch devices a
- * small thumbnail sits in each row instead.
+ * small thumbnail sits in each row instead. The project currently in the
+ * spotlight above gets the hover look (bubblegum fill, shifted title).
  */
-export function WorkList() {
+export function WorkList({ spotlight }: { spotlight?: number }) {
   const { finePointer, reduced } = useMotionPrefs();
   const showCard = finePointer && !reduced;
   const list = useRef<HTMLDivElement>(null);
@@ -54,10 +55,11 @@ export function WorkList() {
   return (
     <div ref={list} className="relative border-b border-plum" onPointerMove={showCard ? onMove : undefined} onPointerLeave={() => setActive(null)}>
       <ul className="m-0 list-none p-0">
-        {indexProjects.map((p, i) => (
+        {projects.map((p, i) => (
           <li key={p.slug}>
             <Link
               to={`/work/${p.slug}`}
+              data-spot={spotlight === i ? 'true' : undefined}
               data-cursor={showCard ? 'hide' : undefined}
               onPointerEnter={() => setActive(i)}
               // Keyboard focus hides the cursor preview; a mouse click (which also focuses) keeps it.
@@ -67,12 +69,12 @@ export function WorkList() {
                 const visibleThumb = thumb && (thumb as HTMLElement).offsetParent ? thumb : null;
                 if (p.image) setSharedSource(p.slug, showCard && active === i ? card.current?.querySelector('[data-card-img]') ?? null : visibleThumb, showCard ? -6 : -3);
               }}
-              className="group relative grid grid-cols-[44px_minmax(0,1fr)_auto_28px] items-center gap-2 border-t border-plum py-5 transition-[background-color] duration-[250ms] hover:bg-bubblegum focus-visible:bg-bubblegum sm:grid-cols-[96px_minmax(0,1fr)_auto_40px] sm:gap-4 sm:px-6 sm:py-[26px] md:grid-cols-[96px_minmax(0,1fr)_auto_auto_40px]"
+              className="group relative grid grid-cols-[44px_minmax(0,1fr)_auto_28px] items-center gap-2 border-t border-plum py-5 transition-[background-color] duration-[250ms] hover:bg-bubblegum focus-visible:bg-bubblegum data-[spot=true]:bg-bubblegum sm:grid-cols-[96px_minmax(0,1fr)_auto_40px] sm:gap-4 sm:px-6 sm:py-[26px] md:grid-cols-[96px_minmax(0,1fr)_auto_auto_40px]"
             >
               <span aria-hidden="true" className="font-italic-serif text-[32px] leading-none sm:text-[44px]">
                 {p.number}
               </span>
-              <span className="transition-transform duration-[250ms] ease-zine group-hover:translate-x-4 group-focus-visible:translate-x-4">
+              <span className="transition-transform duration-[250ms] ease-zine group-hover:translate-x-4 group-focus-visible:translate-x-4 group-data-[spot=true]:translate-x-4">
                 <span className="font-display block text-[28px] font-bold leading-[1.05] tracking-[-0.03em] sm:text-[clamp(34px,4.8vw,70px)] sm:leading-none">
                   {p.title}
                 </span>
@@ -90,7 +92,7 @@ export function WorkList() {
               <span className="hidden text-[18px] md:block">{meta(p)}</span>
               <span
                 aria-hidden="true"
-                className="text-[24px] transition-transform duration-[250ms] ease-zine group-hover:rotate-45 group-focus-visible:rotate-45 sm:text-[30px]"
+                className="text-[24px] transition-transform duration-[250ms] ease-zine group-hover:rotate-45 group-focus-visible:rotate-45 group-data-[spot=true]:rotate-45 sm:text-[30px]"
               >
                 ↗
               </span>
@@ -112,7 +114,7 @@ export function WorkList() {
                 transition={{ duration: 0.35, ease }}
               >
                 <div data-card-img className="relative h-[140px] w-[220px] overflow-hidden border-2 border-plum bg-apricot shadow-[5px_5px_0_var(--color-plum)]">
-                  {indexProjects.map((p, i) => (
+                  {projects.map((p, i) => (
                     <div key={p.slug} className="absolute inset-0 transition-opacity duration-200" style={{ opacity: active === i ? 1 : 0 }}>
                       <Thumb project={p} sizes="220px" />
                     </div>

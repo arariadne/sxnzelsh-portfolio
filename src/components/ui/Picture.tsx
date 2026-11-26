@@ -10,10 +10,12 @@ interface Props {
   sizes: string;
   className?: string;
   priority?: boolean;
+  /** Load immediately without raising priority (e.g. preloading the next slide). */
+  eager?: boolean;
 }
 
 /** AVIF + WebP (+ JPEG fallback when generated) with intrinsic size, so no layout shift. */
-export function Picture({ name, alt, sizes, className, priority }: Props) {
+export function Picture({ name, alt, sizes, className, priority, eager }: Props) {
   const img = manifest[name];
   if (!img) return null;
   const set = (ext: string) => img.widths.map((w) => `/img/${name}-${w}.${ext} ${w}w`).join(', ');
@@ -31,7 +33,7 @@ export function Picture({ name, alt, sizes, className, priority }: Props) {
         height={img.height}
         sizes={sizes}
         className={className}
-        loading={priority ? 'eager' : 'lazy'}
+        loading={priority || eager ? 'eager' : 'lazy'}
         decoding={priority ? 'sync' : 'async'}
         fetchPriority={priority ? 'high' : 'auto'}
       />
