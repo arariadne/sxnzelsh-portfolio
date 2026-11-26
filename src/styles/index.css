@@ -1,0 +1,297 @@
+@import 'tailwindcss';
+
+/* Self-hosted fonts (no CDN). Only the subsets a page uses are downloaded. */
+@import '@fontsource-variable/bricolage-grotesque/opsz.css';
+@import '@fontsource-variable/hanken-grotesk/wght.css';
+@import '@fontsource/instrument-serif/400-italic.css';
+@import '@fontsource/reenie-beanie/400.css';
+
+/* ------------------------------------------------------------------ */
+/* Design tokens ("Plum Sorbet"), taken from design-reference/source.  */
+/* ------------------------------------------------------------------ */
+@theme {
+  /* Flat colours only. Contrast pairs that pass AA:
+     plum/cream, plum on bubblegum, plum on apricot, cream on grape,
+     grape on cream, muted on cream. Never grape on plum/bubblegum. */
+  --color-plum: #230f3b;
+  --color-cream: #fff5ea;
+  --color-grape: #7a3cf0;
+  --color-grape-deep: #6a2ddc;
+  --color-bubblegum: #ff9ccb;
+  --color-apricot: #ffb784;
+  --color-muted: #6b5a80;
+
+  --font-display: 'Bricolage Grotesque Variable', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Hanken Grotesk Variable', system-ui, sans-serif;
+  --font-hand: 'Reenie Beanie', cursive;
+
+  /* The design collapses to one column at 860px. */
+  --breakpoint-md: 53.75rem;
+  /* Full text nav from 768px (it fits there in the design); menu button below. */
+  --breakpoint-nav: 48rem;
+
+  --ease-zine: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --tracking-display: -0.03em;
+  --tracking-tight: -0.02em;
+}
+
+/* Shared spacing tokens from the design. */
+:root {
+  --gutter: clamp(24px, 4.5vw, 64px);
+  --dur-hover: 0.25s;
+  --dur-reveal: 0.8s;
+  color-scheme: light;
+}
+@media (max-width: 639.98px) {
+  :root {
+    --gutter: 20px;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+@layer base {
+  html {
+    background: var(--color-plum);
+    -webkit-text-size-adjust: 100%;
+    /* The design uses the browser default; blocks set their own line-heights. */
+    line-height: normal;
+  }
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--color-plum);
+    background: var(--color-plum);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  /* Focus rings: apricot on dark, grape on light (set per section). */
+  :focus-visible {
+    outline: 3px solid var(--focus, var(--color-grape));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  ::selection {
+    background: var(--color-apricot);
+    color: var(--color-plum);
+  }
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+/* ------------------------------------------------------------------ */
+/* Utilities                                                           */
+/* ------------------------------------------------------------------ */
+
+/* Bricolage ExtraBold, tight tracking (".bg" in the design). */
+@utility font-heavy {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: var(--tracking-display);
+}
+/* Instrument Serif italic (".sf" in the design). */
+@utility font-italic-serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Section colour contexts set the focus ring colour. */
+@utility on-plum {
+  background: var(--color-plum);
+  color: var(--color-cream);
+  --focus: var(--color-apricot);
+}
+@utility on-cream {
+  background: var(--color-cream);
+  color: var(--color-plum);
+  --focus: var(--color-grape);
+}
+@utility on-bubblegum {
+  background: var(--color-bubblegum);
+  color: var(--color-plum);
+  --focus: var(--color-plum);
+}
+@utility on-grape {
+  background: var(--color-grape);
+  color: var(--color-cream);
+  --focus: var(--color-apricot);
+}
+
+@utility px-gutter {
+  padding-inline: var(--gutter);
+}
+
+/* Text link: underline thickens from 1px to 3px on hover (transform only). */
+@utility lnk {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: currentColor;
+    transform: scaleY(0.3333);
+    transform-origin: bottom;
+    transition: transform var(--dur-hover) var(--ease-zine);
+  }
+  &:hover::after,
+  &:focus-visible::after {
+    transform: scaleY(1);
+  }
+}
+
+/* Underline that sweeps in from the left on hover only (nav on light headers). */
+@utility lnk-sweep {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 2px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--dur-hover) var(--ease-zine);
+  }
+  &:hover::after,
+  &:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+@utility sr-only-focusable {
+  &:not(:focus):not(:focus-within) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+/* Below-the-fold sections skip layout and text shaping until they near the
+   viewport (content stays in the DOM and the accessibility tree). In-page
+   navigation adds .cv-off to <html> first so jump targets land exactly. */
+@utility cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1000px;
+}
+html.cv-off .cv-auto {
+  content-visibility: visible;
+}
+
+/* Sticker text rotation (18s, from the design). Stops for reduced motion
+   and when the visitor pauses motion. */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin {
+  animation: spin 18s linear infinite;
+}
+[data-motion='paused'] .spin {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spin {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print: plain black on white, no chrome. Mainly for /resume. */
+@media print {
+  @page {
+    margin: 14mm 16mm;
+  }
+  html,
+  body {
+    background: #fff !important;
+  }
+  header,
+  footer,
+  [data-sticky-bar],
+  [data-progress],
+  .print\:hidden {
+    display: none !important;
+  }
+  * {
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  svg[aria-hidden='true'] {
+    display: none !important;
+  }
+  .resume-top {
+    padding: 0 !important;
+  }
+  .resume-sheet {
+    padding: 8mm 0 0 !important;
+  }
+  .resume-block {
+    padding: 5mm 0 !important;
+    border-color: #000 !important;
+  }
+  .resume-entry,
+  .resume-block h2 {
+    break-inside: avoid;
+  }
+  /* Reveals must never leave content hidden on paper. */
+  .resume * {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+  a::after {
+    display: none !important;
+  }
+  .resume-entry li > span[aria-hidden='true'] {
+    background: #000 !important;
+  }
+}
+
+/* Custom cursor only shows on fine pointers. */
+@media (pointer: fine) and (hover: hover) {
+  html[data-cursor='on'],
+  html[data-cursor='on'] a,
+  html[data-cursor='on'] button {
+    cursor: none;
+  }
+}

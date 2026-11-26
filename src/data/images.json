@@ -1,0 +1,60 @@
+{
+  "portrait": {
+    "width": 1100,
+    "height": 1375,
+    "widths": [
+      320,
+      480,
+      640,
+      880
+    ],
+    "avif": true,
+    "webp": true,
+    "jpeg": 640
+  },
+  "gourmetgamble": {
+    "width": 779,
+    "height": 536,
+    "widths": [
+      480,
+      779
+    ],
+    "avif": true,
+    "webp": true,
+    "jpeg": null
+  },
+  "swiftsail": {
+    "width": 908,
+    "height": 644,
+    "widths": [
+      480,
+      908
+    ],
+    "avif": true,
+    "webp": true,
+    "jpeg": null
+  },
+  "furwell": {
+    "width": 1866,
+    "height": 866,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "avif": true,
+    "webp": true,
+    "jpeg": null
+  },
+  "dismap": {
+    "width": 978,
+    "height": 544,
+    "widths": [
+      480,
+      978
+    ],
+    "avif": true,
+    "webp": true,
+    "jpeg": null
+  }
+}

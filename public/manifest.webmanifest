@@ -1,0 +1,13 @@
+{
+  "name": "Elaisha Mae Arias | Full-Stack Software Engineer & AI Automation Specialist",
+  "short_name": "ela.",
+  "description": "Portfolio of Elaisha Mae Arias, Full-Stack Software Engineer & AI Automation Specialist in Cebu, Philippines.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#230F3B",
+  "theme_color": "#230F3B",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
