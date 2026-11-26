@@ -21,6 +21,7 @@ Live at <https://sxnzelsh-portfolio.vercel.app>.
 | `npm run build` | Type-check and build to `dist/` |
 | `npm run preview` | Serve the production build at <http://localhost:4173> |
 | `npm run images` | Optimize images from `assets/source/` into `public/img/` (AVIF, WebP, JPEG) and update `src/data/images.json` |
+| `node scripts/capture-sites.mjs` | Screenshot the hero of each live project site (1440×900) into `assets/source/`, then run `npm run images` |
 | `npm run brand` | Re-render the Open Graph card and favicons from the site fonts and portrait |
 | `npm run shots -- "#about"` | Screenshot a section at 375/390/768/1024/1440 next to the design reference (needs `npm run preview` running) |
 
@@ -35,7 +36,7 @@ All copy lives in typed files under `src/data/`, so you rarely need to touch com
 | --- | --- |
 | `site.ts` | Name, title, intro line, email, social links, résumé path, nav, **`availableForWork`** (turns the spinning sticker on or off), hero tape words |
 | `home.ts` | About statement and facts, What I do panels, Skills blurb, Contact heading |
-| `projects.ts` | The featured project and the work index. Each project has a slug (its `/work/:slug` URL), tagline, type, tech, overview statement, links, image and gallery |
+| `projects.ts` | The projects shown in the spotlight and the work index. Each has a slug (its `/work/:slug` URL), tagline, one-sentence `summary`, spotlight `tone`, type, tech, overview statement, links, image, optional `mobileImage` and gallery |
 | `skills.ts` | Marquee bands and the skills panel groups. Each tool has a logo: `icon('slug')` from simple-icons or `mono('Ab')` for a monogram |
 | `icons.ts` | The simple-icons imports. To add a tool logo, import its `si*` export here |
 | `certificates.ts` | Certificate titles, issuers and links |
@@ -63,7 +64,7 @@ The portrait uses a fixed 4:5 crop (`extract` in the script). The photo itself i
 src/
   components/
     hero/        Hero, sticker, crossing tapes
-    sections/    About, What I do, Work (featured + index list), Skills, Contact
+    sections/    About, What I do, Work (spotlight + index list), Skills, Contact
     layout/      Header, sticky bar, mobile menu, footer, route curtain, cursor, SEO
     ui/          Shared pieces: reveals, section heads, hard-shadow buttons and panels, marquee, picture
   data/          Content (see above)

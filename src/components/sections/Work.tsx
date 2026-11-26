@@ -1,11 +1,13 @@
+import { useState } from 'react';
 import { projects } from '../../data/projects';
 import { HairlineGrid } from '../ui/HairlineGrid';
 import { SectionHead } from '../ui/SectionHead';
-import { FeaturedWork } from './FeaturedWork';
+import { Spotlight } from './Spotlight';
 import { WorkList } from './WorkList';
 
-/** 03 Selected work: featured block, then the index list. */
+/** 03 Selected work: the rotating spotlight, then the index list (which highlights the spotlit project). */
 export function Work() {
+  const [spotlight, setSpotlight] = useState(0);
   return (
     <section
       id="work"
@@ -25,8 +27,8 @@ export function Work() {
             </p>
           }
         />
-        <FeaturedWork />
-        <WorkList />
+        <Spotlight index={spotlight} onIndex={setSpotlight} />
+        <WorkList spotlight={spotlight} />
       </div>
     </section>
   );

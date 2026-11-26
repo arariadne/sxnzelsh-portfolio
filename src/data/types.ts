@@ -15,6 +15,8 @@ export interface Project {
   slug: string;
   number: string;
   title: string;
+  /** Shorter name for tight spots (spotlight progress labels), e.g. "RER". */
+  shortTitle?: string;
   /** Short line under the case-study title. */
   tagline: string;
   /** True while the tagline is a placeholder you still need to confirm. */
@@ -27,16 +29,25 @@ export interface Project {
   statement: string;
   /** Original description from the old site, kept verbatim. */
   description: string;
+  /** One sentence shown in the home spotlight (first sentence of the description). */
+  summary: string;
+  /** Spotlight block colour. Text pairs are fixed to AA-safe combinations. */
+  tone: SpotlightTone;
   /** Extra overview paragraphs; empty strings render as visible TODO notes. */
   overview: string[];
   role: string | null;
   year: string | null;
+  /** Live product URL. The spotlight button becomes "Visit site ↗" (new tab). */
+  liveUrl?: string;
   links: Link[];
   image: ProjectImage | null;
+  /** Optional phone screenshot; the spotlight only shows its phone frame when this exists. */
+  mobileImage?: ProjectImage | null;
   /** Screenshots 2 and 3; the gallery stays hidden until both exist. */
   gallery: ProjectImage[];
-  featured?: boolean;
 }
+
+export type SpotlightTone = 'grape' | 'plum' | 'bubblegum' | 'apricot';
 
 export type SkillLogo =
   | { kind: 'icon'; slug: string }
