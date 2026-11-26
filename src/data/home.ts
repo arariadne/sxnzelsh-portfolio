@@ -5,7 +5,7 @@ export const about = {
   body: 'Computer Engineering graduate, Cum Laude, based in Cebu. I work across web, mobile and AI, and I like owning a product from first sketch to store release.',
   facts: [
     { value: 'Cum Laude', label: 'B.S. Computer Engineering, 2026' },
-    { value: '5 connected apps', label: 'Built in one product suite' },
+    { value: '7 projects', label: 'Web, mobile and embedded builds' }, // TODO: confirm this fact.
     { value: '3 platforms', label: 'Web, iOS and Android' },
   ],
 };
